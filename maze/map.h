@@ -1,11 +1,16 @@
 #ifndef MAP
 #define MAP
 
+#include "./env.h"
+
 namespace maze {
   class Map {
     public:
       Map();
-      ~Map() = default;
+      ~Map();
+      nu::Canvas* GetCanvas();
+    private:
+      nu::Canvas* canvas;
   };
 }
 

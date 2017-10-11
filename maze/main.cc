@@ -4,15 +4,14 @@
 #include "nativeui/nativeui.h"
 #include "./main_window.h"
 
-// #if define(OS_WIN)
-// int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
-//   base::CommandLine::Init(0, nullptr);
-// #else
-// #endif
-
+#if defined(OS_WIN)
+int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
+  base::CommandLine::Init(0, nullptr);
+#else
 int main(int argc, const char *argv[]) {
   base::CommandLine::Init(argc, argv);
+#endif
   MainWindow* win = new MainWindow();
-  win->exec();
+  win->Exec();
   return 0;
 }

@@ -1,25 +1,33 @@
 #include "./main_window.h"
 
-MainWindow::MainWindow() { }
+MainWindow::MainWindow() {
+  map = new maze::Map();
+  createWindow();
+}
 
-void MainWindow::exec() {
-  // Initialize the global instance of nativeui.
+void MainWindow::createWindow() {
   nu::State state;
-
-  // Create GUI message loop.
   nu::Lifetime lifetime;
 
-  // Create window with default options, and then show it.
   scoped_refptr<nu::Window> window(new nu::Window(nu::Window::Options()));
-  window->SetContentSize(nu::SizeF(400, 400));
+  window->SetContentSize(nu::SizeF(600, 600));
+  window->SetContentView(Exec());
   window->Center();
   window->Activate();
-
-  // Quit when window is closed.
-  window->on_close.Connect([](nu::Window*) {
+  window->on_close.Connect([this](nu::Window*) {
+    delete this->map;
     nu::Lifetime::GetCurrent()->Quit();
   });
 
-  // Enter message loop.
   lifetime.Run();
+}
+
+nu::View* MainWindow::Exec() {
+  nu::Container* container = new nu::Container();
+  container->on_draw.Connect([this](nu::Container*, nu::Painter* p, const nu::RectF)
+    {
+      p->DrawCanvas(this->map->GetCanvas(), nu::RectF(600, 600));
+    }
+  );
+  return container;
 }
