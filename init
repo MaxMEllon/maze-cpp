@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+
+wget https://github.com/yue/yue/releases/download/v0.2.1/libyue_v0.2.1_mac_x64.zip
+unzip libyue_v0.2.1_mac_x64.zip
