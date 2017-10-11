@@ -12,6 +12,6 @@ int main(int argc, const char *argv[]) {
   base::CommandLine::Init(argc, argv);
 #endif
   MainWindow* win = new MainWindow();
-  win->Exec();
+  delete win;
   return 0;
 }
