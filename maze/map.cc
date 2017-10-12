@@ -2,15 +2,24 @@
 
 maze::Map::Map() {
   canvas = new nu::Canvas(nu::SizeF(600, 600));
+  this->emitter = new nu::Signal<void(nu::KeyboardCode)>();
   this->initializeSelf();
   this->generateRoad();
   this->drawCanvas();
+  this->emitter->Connect([](nu::KeyboardCode k) -> void {
+    std::string key = nu::KeyboardCodeToStr(k);
+    std::cout << key << std::endl;
+  });
 }
 
 maze::Map::~Map() { }
 
 nu::Canvas* maze::Map::GetCanvas() {
   return canvas;
+}
+
+nu::Signal<void(nu::KeyboardCode)>* maze::Map::GetEmitter() {
+  return this->emitter;
 }
 
 void maze::Map::Debug() {
