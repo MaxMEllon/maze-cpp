@@ -1,7 +1,7 @@
 #include "./main_window.h"
 
 MainWindow::MainWindow() {
-  map = new maze::Map();
+  map = new maze::Map(emitter);
   createWindow();
 }
 
@@ -24,10 +24,11 @@ void MainWindow::createWindow() {
 
 nu::View* MainWindow::Exec() {
   nu::Container* container = new nu::Container();
-  container->on_draw.Connect([this](nu::Container*, nu::Painter* p, const nu::RectF)
-    {
-      p->DrawCanvas(this->map->GetCanvas(), nu::RectF(600, 600));
-    }
-  );
+  this->emitter.Connect([this](nu::Canvas* c) -> void {
+    this->painter->DrawCanvas(c, nu::RectF(600, 600));
+  });
+  container->on_draw.Connect([this](nu::Container*, nu::Painter* p, const nu::RectF) -> void {
+    this->painter = p;
+  });
   return container;
 }

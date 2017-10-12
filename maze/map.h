@@ -6,10 +6,11 @@
 namespace maze {
   class Map {
     public:
-      Map();
+      Map(nu::Signal<void(nu::Canvas*)> emitter);
       ~Map();
       nu::Canvas* GetCanvas();
     private:
+      nu::Signal<void(nu::Canvas*)> emitter;
       nu::Canvas* canvas;
   };
 }
