@@ -2,16 +2,21 @@
 #define MAP
 
 #include "./env.h"
+#include "./block.h"
 
 namespace maze {
   class Map {
     public:
-      Map(nu::Signal<void(nu::Canvas*)> emitter);
+      Map();
       ~Map();
       nu::Canvas* GetCanvas();
+      void Debug();
     private:
-      nu::Signal<void(nu::Canvas*)> emitter;
+      std::vector<std::vector<maze::Block*>> raw;
       nu::Canvas* canvas;
+      void initializeSelf();
+      void generateRoad();
+      void drawCanvas();
   };
 }
 

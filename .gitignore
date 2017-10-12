@@ -4,6 +4,7 @@
 /maze/Maze.build/
 /maze/Debug
 /maze/Maze.xcodeproj/
+/maze/Makefile
 /lib
 /include/
 /maze/cmake_install.cmake
