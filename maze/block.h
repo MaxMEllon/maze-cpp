@@ -5,7 +5,7 @@
 
 namespace maze {
   enum class BlockType {
-    EMPTY = 0, WALL, PLAYER
+    EMPTY = 0, WALL
   };
 
   class Block {
@@ -16,7 +16,6 @@ namespace maze {
     maze::BlockType GetType();
     void SetType(maze::BlockType type);
     bool isWall();
-    bool isPlayer();
     void Show();
   private:
     BlockType type;

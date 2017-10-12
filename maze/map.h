@@ -3,6 +3,7 @@
 
 #include "./env.h"
 #include "./block.h"
+#include "./size.h"
 
 namespace maze {
   class Map {
@@ -16,6 +17,7 @@ namespace maze {
       std::vector<std::vector<maze::Block*>> raw;
       nu::Signal<void(nu::KeyboardCode)>* emitter;
       nu::Canvas* canvas;
+      maze::Size* mapSize;
       void initializeSelf();
       void generateRoad();
       void drawCanvas();

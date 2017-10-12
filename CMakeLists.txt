@@ -14,6 +14,7 @@ add_executable(${APP_NAME}
 	${APP_NAME}/main_window.cc
 	${APP_NAME}/map.cc
 	${APP_NAME}/block.cc
+	${APP_NAME}/size.cc
 )
 set_property(TARGET ${APP_NAME} PROPERTY CXX_STANDARD 11)
 target_include_directories(${APP_NAME} PRIVATE "include")
