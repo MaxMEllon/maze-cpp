@@ -20,13 +20,20 @@ bool maze::Block::isWall() {
   return this->type == maze::BlockType::WALL;
 }
 
+bool maze::Block::isPlayer() {
+  return this->type == maze::BlockType::PLAYER;
+}
+
 void maze::Block::Show() {
   switch (this->type) {
     case maze::BlockType::WALL:
-      std::cout << "##";
+      std::cout << "###";
       break;
     case maze::BlockType::EMPTY:
-      std::cout << "  ";
+      std::cout << "   ";
+      break;
+    case maze::BlockType::PLAYER:
+      std::cout << " . ";
       break;
     default:
       break;

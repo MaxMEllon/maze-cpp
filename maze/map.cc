@@ -41,6 +41,7 @@ void maze::Map::initializeSelf() {
       }
     }
   }
+  raw[1][1]->SetType(maze::BlockType::PLAYER);
 }
 
 void maze::Map::generateRoad() {
@@ -67,7 +68,11 @@ void maze::Map::drawCanvas() {
     for (int j = 0; j < 49; j++) {
       if (raw[i][j]->isWall()) {
         p->SetColor(nu::Color("#fff"));
-        p->FillRect(nu::RectF(i * 11, j * 11, 11, 11));
+        p->FillRect(nu::RectF(j * 11, i * 11, 11, 11));
+      }
+      if (raw[i][j]->isPlayer()) {
+        p->SetColor(nu::Color("#2f2"));
+        p->FillRect(nu::RectF(j * 11, i * 11, 11, 11));
       }
     }
   }
