@@ -1,5 +1,5 @@
-#ifndef MAP
-#define MAP
+#ifndef __MAZE__MAP__
+#define __MAZE__MAP__
 
 #include "./env.h"
 #include "./block.h"

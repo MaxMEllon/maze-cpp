@@ -1,5 +1,5 @@
-#ifndef MAIN_WINDOW
-#define MAIN_WINDOW
+#ifndef __MAZE__MAIN_WINDOW__
+#define __MAZE__MAIN_WINDOW__
 
 #include "./env.h"
 #include "./map.h"

@@ -1,5 +1,5 @@
-#ifndef ENV
-#define ENV
+#ifndef __MAZE__ENV__
+#define __MAZE__ENV__
 
 #include <iostream>
 #include <vector>

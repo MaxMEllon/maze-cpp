@@ -1,5 +1,5 @@
-#ifndef BLOCK
-#define BLOCK
+#ifndef __MAZE__BLOCK__
+#define __MAZE__BLOCK__
 
 #include "./env.h"
 
