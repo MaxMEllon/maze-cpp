@@ -27,7 +27,6 @@ nu::View* MainWindow::Exec() {
   container->SetFocusable(true);
   container->Focus();
   container->on_draw.Connect([this](nu::Container*, nu::Painter* p, nu::RectF) -> void {
-    // this->map->Debug();
     p->DrawCanvas(this->map->GetCanvas(), nu::RectF(600, 600));
   });
   container->on_key_down.Connect([this](nu::View*, nu::KeyEvent k) -> bool {
