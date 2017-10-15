@@ -20,9 +20,11 @@ namespace maze {
       nu::Canvas* canvas;
       maze::Player* player;
       maze::Size* mapSize;
+      bool movable(const maze::Pos);
       void initializeSelf();
       void generateRoad();
       void drawCanvas();
+      void handleKeyEvent(const nu::KeyboardCode);
   };
 }
 

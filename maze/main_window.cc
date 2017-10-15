@@ -18,7 +18,6 @@ void MainWindow::createWindow() {
     delete this->map;
     nu::Lifetime::GetCurrent()->Quit();
   });
-
   lifetime.Run();
 }
 

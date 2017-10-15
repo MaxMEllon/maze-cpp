@@ -2,21 +2,66 @@
 
 maze::Map::Map() {
   this->canvas = new nu::Canvas(nu::SizeF(600, 600));
-  this->mapSize = new maze::Size(49, 49);
   this->player = new maze::Player(maze::Pos(1, 1));
+  this->mapSize = new maze::Size(49, 49);
   this->emitter = new nu::Signal<void(nu::KeyboardCode)>();
 
   this->initializeSelf();
   this->generateRoad();
   this->drawCanvas();
 
-  this->emitter->Connect([](nu::KeyboardCode k) -> void {
-    std::string key = nu::KeyboardCodeToStr(k);
-    std::cout << key << std::endl;
+  this->emitter->Connect([this](nu::KeyboardCode k) -> void {
+    this->handleKeyEvent(k);
   });
 }
 
 maze::Map::~Map() { }
+
+void maze::Map::handleKeyEvent(const nu::KeyboardCode k) {
+  const Pos pos = this->player->GetPos();
+  switch (k) {
+    case nu::KeyboardCode::VKEY_UP: {
+      Pos nextPos = maze::Pos(pos.GetX(), pos.GetY() - 1);
+      if (this->movable(nextPos)) {
+        this->player->MoveTo(nextPos);
+      }
+      break;
+    }
+    case nu::KeyboardCode::VKEY_DOWN: {
+      Pos nextPos = maze::Pos(pos.GetX(), pos.GetY() + 1);
+      if (this->movable(nextPos)) {
+        this->player->MoveTo(nextPos);
+      }
+      break;
+    }
+    case nu::KeyboardCode::VKEY_LEFT: {
+      Pos nextPos = maze::Pos(pos.GetX() - 1, pos.GetY());
+      if (this->movable(nextPos)) {
+        this->player->MoveTo(nextPos);
+      }
+      break;
+    }
+    case nu::KeyboardCode::VKEY_RIGHT: {
+      Pos nextPos = maze::Pos(pos.GetX() + 1, pos.GetY());
+      if (this->movable(nextPos)) {
+        this->player->MoveTo(nextPos);
+      }
+      break;
+    }
+  default:
+    break;
+  }
+}
+
+bool maze::Map::movable(const maze::Pos p) {
+  int x = p.GetX();
+  int y = p.GetY();
+  if (1 < x && x < this->mapSize->GetWidth() - 1
+      && 1 < y && y < this->mapSize->GetHeight() - 1) {
+    return !raw[x][y]->isWall();
+  }
+  return false;
+}
 
 nu::Canvas* maze::Map::GetCanvas() {
   return canvas;
@@ -78,6 +123,10 @@ void maze::Map::drawCanvas() {
       }
     }
   }
+
+  // Pos pos = this->player->GetPos();
+  // p->SetColor(nu::Color("#3f0"));
+  // p->FillRect(nu::RectF(pos.GetX() * 11, pos.GetY() * 11, 11, 11));
 }
 
 void maze::Map::Debug() {
